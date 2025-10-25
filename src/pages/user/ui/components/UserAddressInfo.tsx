@@ -1,15 +1,14 @@
 import { useFetchUserByIdQuery } from '@/entities/user-info/services/user-info.api';
 import { Card, Descriptions, Flex, Space, Spin, Tag } from 'antd';
-import { AiFillEnvironment } from 'react-icons/ai';
-import { useSearchParams } from 'react-router';
+import { AiFillEnvironment } from 'react-icons/ai'
 import { LoadingOutlined } from '@ant-design/icons';
 
-export default function UserAddressInfo() {
+interface UserAddressInfoProps {
+    userId?: string
+}
 
-    const [searchParams] = useSearchParams();
-    const userId = searchParams.get('userId') ?? '';
-
-    const { data: userAdressInfo, isLoading, error } = useFetchUserByIdQuery(userId);
+export default function UserAddressInfo({ userId }: UserAddressInfoProps) {
+    const { data: userAdressInfo, isLoading, error } = useFetchUserByIdQuery(userId || '');
 
     if (error) console.log(error);
 

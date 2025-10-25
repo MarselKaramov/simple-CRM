@@ -1,16 +1,23 @@
-import { userTableData } from '@/entities/user-table/services/user-table.api';
-import { userInfoData } from '@/entities/user-info/services/user-info.api';
-import { configureStore } from '@reduxjs/toolkit';
-import { analyticsData } from '@/entities/analytics/services/analytics.api';
+import {userTableData} from "@/entities/user-table/services/user-table.api";
+import {userInfoData} from "@/entities/user-info/services/user-info.api";
+import {configureStore} from "@reduxjs/toolkit";
+import {analyticsData} from "@/entities/analytics/services/analytics.api";
+import {dealsData} from "@/entities/deals/services/deals.api";
 
 export const store = configureStore({
-    reducer: {
-        [userTableData.reducerPath]: userTableData.reducer,
-        [userInfoData.reducerPath]: userInfoData.reducer,
-
-        [analyticsData.reducerPath]: analyticsData.reducer,
-    },
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(userTableData.middleware, userInfoData.middleware, analyticsData.middleware),
+  reducer: {
+    [userTableData.reducerPath]: userTableData.reducer,
+    [userInfoData.reducerPath]: userInfoData.reducer,
+    [dealsData.reducerPath]: dealsData.reducer,
+    [analyticsData.reducerPath]: analyticsData.reducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(
+      userTableData.middleware,
+      userInfoData.middleware,
+      analyticsData.middleware,
+      dealsData.middleware
+    ),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

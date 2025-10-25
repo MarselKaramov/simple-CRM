@@ -13,7 +13,8 @@ type SupabaseQueryArgs = {
     | "selectById"
     | "selectByIdPerson"
     | "selectCategories"
-    | "insertNewPerson";
+    | "insertNewPerson"
+    | "getAllDeals";
   userId?: string | number;
   data?: unknown;
 };
@@ -67,10 +68,13 @@ const supabaseBaseQuery: BaseQueryFn<
       break;
     }
     case "selectCategories": {
-      response = await supabase.from("person").select("category");
+      response = await supabase.from(table).select("category");
       break;
     }
-
+    case "getAllDeals": {
+      response = await supabase.from(table).select("*");
+      break;
+    }
     default: {
       return {error: {message: "Unsupported method"} as unknown as unknown};
     }

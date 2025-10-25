@@ -76,7 +76,7 @@ export default function UserTable() {
                     color='default'
                     variant='outlined'
                 >
-                    <Link to={`${ROUTES.USER}?userId=${+row.id + 1}`}>Подробнее</Link>
+                    <Link to={`${ROUTES.USER}/${+row.id + 1}`}>Подробнее</Link>
                 </Button>
             ),
             category: (

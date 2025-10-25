@@ -4,12 +4,14 @@ import { Avatar, Card, Col, Row, Space, Tag } from 'antd';
 import { CiMail } from 'react-icons/ci';
 import { FaUser } from 'react-icons/fa';
 import { MdOutlineMan, MdOutlineWoman2 } from 'react-icons/md';
-import { useSearchParams } from 'react-router';
 
-export default function UserPersonalInfo() {
-    const [searchParams] = useSearchParams();
-    const userId = searchParams.get('userId') ?? '';
-    const { data: userPersonalData } = useFetchPersonalInfoQuery(userId);
+interface UserPersonalInfoProps {
+    userId?: string
+}
+
+export default function UserPersonalInfo({ userId }: UserPersonalInfoProps) {
+
+    const { data: userPersonalData } = useFetchPersonalInfoQuery(userId || '');
 
     if (!userPersonalData) {
         return (
